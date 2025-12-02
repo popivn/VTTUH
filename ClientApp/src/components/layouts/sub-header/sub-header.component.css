@@ -1,0 +1,236 @@
+.sub-header {
+    position: relative;
+}
+
+/* Scrollbar ẩn */
+.hide-scrollbar {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Smooth scrolling trên mobile */
+    -webkit-overflow-scrolling: touch;
+    /* Đảm bảo menu nằm trên pseudo-elements (::before, ::after) */
+    position: relative;
+    z-index: 10;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Menu container */
+.sub-header ul {
+    min-width: max-content;
+}
+
+.sub-header-menu {
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Menu items - responsive */
+.sub-header .vtth-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+}
+
+/* Dropdown button responsive */
+.sub-header .dropdown .vtth-btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+}
+
+/* Dropdown menu styling */
+.vtth-dropdown-menu {
+    animation-duration: 0.28s !important;
+}
+
+.vtth-dropdown-icon {
+    color: #e53935;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+}
+
+/* Đảm bảo dropdown-menu nổi bên ngoài div scroll */
+.sub-header .dropdown.position-static > .dropdown-menu {
+    position: absolute !important;
+}
+
+/* ========== RESPONSIVE - MOBILE FIRST ========== */
+
+/* Mobile (mặc định - < 576px) */
+@media (max-width: 575.98px) {
+    .sub-header {
+        padding: 0.5rem 0 !important;
+    }
+    
+    .sub-header .hide-scrollbar {
+        padding: 0 0.5rem;
+    }
+    
+    .sub-header ul {
+        padding: 0 0.25rem !important;
+        gap: 0.25rem;
+    }
+    
+    /* Giảm kích thước button trên mobile */
+    .sub-header .vtth-btn {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+        min-width: 100px !important;
+        max-width: 120px !important;
+        margin: 0.125rem !important;
+    }
+    
+    /* Dropdown button nhỏ hơn */
+    .sub-header .dropdown .vtth-btn {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.5rem;
+        min-width: 90px !important;
+        max-width: 110px !important;
+    }
+    
+    /* Dropdown menu full width trên mobile */
+    .sub-header .dropdown-menu {
+        min-width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        left: 50% !important;
+        transform: translateX(-50%);
+        right: auto !important;
+    }
+    
+    /* Dropdown items nhỏ hơn */
+    .sub-header .vtth-dropdown-item {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem;
+    }
+    
+    .sub-header .vtth-dropdown-icon {
+        font-size: 1.1rem !important;
+        min-width: 1.2rem;
+    }
+    
+    /* Ẩn border decorative trên mobile */
+    .sub-header::before,
+    .sub-header::after {
+        display: none;
+    }
+}
+
+/* Small devices (≥ 576px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .sub-header .vtth-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.7rem;
+        min-width: 120px !important;
+        max-width: 150px !important;
+        margin: 0.25rem !important;
+    }
+    
+    .sub-header .dropdown .vtth-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.65rem;
+        min-width: 110px !important;
+        max-width: 140px !important;
+    }
+    
+    .sub-header .dropdown-menu {
+        min-width: 280px !important;
+        max-width: 90vw;
+    }
+    
+    .sub-header::before,
+    .sub-header::after {
+        width: 90%;
+    }
+}
+
+/* Medium devices (≥ 768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sub-header .vtth-btn {
+        font-size: 0.9rem;
+        padding: 0.45rem 0.85rem;
+        min-width: 130px !important;
+        max-width: 170px !important;
+    }
+    
+    .sub-header .dropdown .vtth-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.75rem;
+        min-width: 120px !important;
+        max-width: 160px !important;
+    }
+    
+    .sub-header .dropdown-menu {
+        min-width: 240px !important;
+    }
+}
+
+/* Large devices (≥ 992px) - Desktop */
+@media (min-width: 992px) {
+    .sub-header .vtth-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        min-width: 140px !important;
+        max-width: 190px !important;
+    }
+    
+    .sub-header .dropdown .vtth-btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Border layer (lớp ngoài lớn hơn - màu đỏ) */
+.sub-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 80%;
+    height: 0;
+    padding-bottom: 1.5%;
+    background-color: #680102; /* Màu border */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    z-index: 1;
+}
+
+/* Background layer (lớp trong nhỏ hơn - tạo hiệu ứng border) */
+.sub-header::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: calc(80% - 2px);
+    height: 0;
+    padding-bottom: calc(1.5% - 1px);
+    background-color: white; /* Màu nền để tạo border */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    z-index: 1;
+}
+
+/* Thêm vào CSS */
+.sub-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Đảm bảo cao hơn content nhưng có thể thấp hơn header */
+    background-color: white; /* Quan trọng: tránh content xuyên qua */
+    width: 100%;
+}
+
+.sub-header-content {
+    position: relative;
+}
+
+/* Đảm bảo không có overflow issues */
+.sub-header-sticky .hide-scrollbar {
+    overflow-x: auto;
+    overflow-y: visible; /* Quan trọng: không dùng hidden */
+}

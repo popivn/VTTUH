@@ -14,46 +14,62 @@ $vtth-warning-hover: darken($vtth-warning, 10%);
 $vtth-danger: #680102;
 $vtth-danger-hover: darken($vtth-danger, 10%);
 
+// Màu đỏ sáng hơn cho UI elements (sub-header, buttons)
+$vtth-red: #e53935;
+$vtth-red-hover: darken($vtth-red, 10%);
+
 $vtth-info: #03A9F4;
 $vtth-info-hover: darken($vtth-info, 10%);
 
 // Background utilities
-.vtth-bg-primary { background-color: $vtth-primary !important; }
+.vtth-bg-primary        { background-color: $vtth-primary !important; }
 .vtth-bg-primary-hover:hover { background-color: $vtth-primary-hover !important; }
+.vtth-bg-primary-active.active { background-color: $vtth-primary !important; color: #fff !important; }
 
-.vtth-bg-secondary { background-color: $vtth-secondary !important; }
+.vtth-bg-secondary        { background-color: $vtth-secondary !important; }
 .vtth-bg-secondary-hover:hover { background-color: $vtth-secondary-hover !important; }
+.vtth-bg-secondary-active.active { background-color: $vtth-secondary !important; color: #fff !important; }
 
-.vtth-bg-success { background-color: $vtth-success !important; }
+.vtth-bg-success        { background-color: $vtth-success !important; }
 .vtth-bg-success-hover:hover { background-color: $vtth-success-hover !important; }
+.vtth-bg-success-active.active { background-color: $vtth-success !important; color: #fff !important; }
 
-.vtth-bg-warning { background-color: $vtth-warning !important; }
+.vtth-bg-warning        { background-color: $vtth-warning !important; }
 .vtth-bg-warning-hover:hover { background-color: $vtth-warning-hover !important; }
+.vtth-bg-warning-active.active { background-color: $vtth-warning !important; color: #fff !important; }
 
-.vtth-bg-danger { background-color: $vtth-danger !important; }
+.vtth-bg-danger        { background-color: $vtth-danger !important; }
 .vtth-bg-danger-hover:hover { background-color: $vtth-danger-hover !important; }
+.vtth-bg-danger-active.active { background-color: $vtth-danger !important; color: #fff !important; }
 
-.vtth-bg-info { background-color: $vtth-info !important; }
+.vtth-bg-info        { background-color: $vtth-info !important; }
 .vtth-bg-info-hover:hover { background-color: $vtth-info-hover !important; }
+.vtth-bg-info-active.active { background-color: $vtth-info !important; color: #fff !important; }
 
 // Text utilities
-.vtth-text-primary { color: $vtth-primary !important; }
+.vtth-text-primary        { color: $vtth-primary !important; }
 .vtth-text-primary-hover:hover { color: $vtth-primary-hover !important; }
+.vtth-text-primary-active.active { color: $vtth-primary !important; }
 
-.vtth-text-secondary { color: $vtth-secondary !important; }
+.vtth-text-secondary        { color: $vtth-secondary !important; }
 .vtth-text-secondary-hover:hover { color: $vtth-secondary-hover !important; }
+.vtth-text-secondary-active.active { color: $vtth-secondary !important; }
 
-.vtth-text-success { color: $vtth-success !important; }
+.vtth-text-success        { color: $vtth-success !important; }
 .vtth-text-success-hover:hover { color: $vtth-success-hover !important; }
+.vtth-text-success-active.active { color: $vtth-success !important; }
 
-.vtth-text-warning { color: $vtth-warning !important; }
+.vtth-text-warning        { color: $vtth-warning !important; }
 .vtth-text-warning-hover:hover { color: $vtth-warning-hover !important; }
+.vtth-text-warning-active.active { color: $vtth-warning !important; }
 
-.vtth-text-danger { color: $vtth-danger !important; }
+.vtth-text-danger        { color: $vtth-danger !important; }
 .vtth-text-danger-hover:hover { color: $vtth-danger-hover !important; }
+.vtth-text-danger-active.active { color: $vtth-danger !important; }
 
-.vtth-text-info { color: $vtth-info !important; }
+.vtth-text-info        { color: $vtth-info !important; }
 .vtth-text-info-hover:hover { color: $vtth-info-hover !important; }
+.vtth-text-info-active.active { color: $vtth-info !important; }
 
 // Border utilities
 .vtth-border-primary { border-color: $vtth-primary !important; }
@@ -62,3 +78,92 @@ $vtth-info-hover: darken($vtth-info, 10%);
 .vtth-border-warning { border-color: $vtth-warning !important; }
 .vtth-border-danger { border-color: $vtth-danger !important; }
 .vtth-border-info { border-color: $vtth-info !important; }
+
+// ----- Button utilities: Hover + Active + Focus states (Mixins & Button Classes) -----
+// Mixin cho trạng thái button
+@mixin vtth-state($color, $color-hover: null, $is-rounded: false) {
+    $hover-color: if($color-hover != null, $color-hover, darken($color, 10%));
+    $border-radius: if($is-rounded, 50px, 0.375rem);
+  
+    // Bình thường: nền trắng, chữ màu, border màu
+    background-color: #fff;
+    color: $color;
+    border: 1px solid $color;
+    border-radius: $border-radius;
+    transition: all 0.2s ease;
+  
+    &:hover,
+    &:focus {
+      background-color: lighten($color, 45%); // hover nhẹ - nền màu nhạt
+      color: $color; // giữ màu chữ
+      border-color: $color;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba($color, 0.15);
+    }
+  
+    &.active {
+      background-color: $color; // nền màu khi active
+      color: #fff;              // chữ trắng
+      border-color: $color;
+      box-shadow: 0 2px 8px rgba($color, 0.3);
+    }
+  
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  // Base button class
+  .vtth-btn {
+    padding: .5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+  
+  // Các button classes với màu
+  .vtth-btn-primary   { @include vtth-state($vtth-primary, $vtth-primary-hover); }
+  .vtth-btn-secondary { @include vtth-state($vtth-secondary, $vtth-secondary-hover); }
+  .vtth-btn-success   { @include vtth-state($vtth-success, $vtth-success-hover); }
+  .vtth-btn-warning   { @include vtth-state($vtth-warning, $vtth-warning-hover); }
+  .vtth-btn-danger    { @include vtth-state($vtth-danger, $vtth-danger-hover); }
+  .vtth-btn-info      { @include vtth-state($vtth-info, $vtth-info-hover); }
+  .vtth-btn-red       { @include vtth-state($vtth-danger, $vtth-red-hover); }
+  
+  // Variant rounded-pill cho các màu
+  .vtth-btn-primary.rounded-pill   { @include vtth-state($vtth-primary, $vtth-primary-hover, true); }
+  .vtth-btn-secondary.rounded-pill { @include vtth-state($vtth-secondary, $vtth-secondary-hover, true); }
+  .vtth-btn-success.rounded-pill   { @include vtth-state($vtth-success, $vtth-success-hover, true); }
+  .vtth-btn-warning.rounded-pill   { @include vtth-state($vtth-warning, $vtth-warning-hover, true); }
+  .vtth-btn-danger.rounded-pill    { @include vtth-state($vtth-danger, $vtth-danger-hover, true); }
+  .vtth-btn-info.rounded-pill      { @include vtth-state($vtth-info, $vtth-info-hover, true); }
+  .vtth-btn-red.rounded-pill       { @include vtth-state($vtth-danger, $vtth-red-hover, true); }
+
+// ----- Dropdown Menu Item Mixin -----
+@mixin vtth-dropdown-item($color, $bg-gradient-start: #fff7f0, $bg-gradient-end: #ffeaea) {
+    color: $color;
+    transition: 
+        background 0.23s cubic-bezier(0.4, 1, 0.7, 1),
+        transform 0.13s cubic-bezier(0.39, 0.57, 0.56, 1.36),
+        box-shadow 0.18s;
+    
+    &:hover,
+    &:focus {
+        background: linear-gradient(90deg, $bg-gradient-start 60%, $bg-gradient-end 100%);
+        color: darken($color, 15%) !important;
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 3px 15px 0 rgba($color, 0.11), 0 2px 0 lighten($color, 25%) inset;
+        text-decoration: none;
+    }
+    
+    &:active {
+        transform: translateY(-2px) scale(1.01);
+    }
+}
+
+.vtth-dropdown-item {
+    @include vtth-dropdown-item($vtth-red, #fff7f0, #fdeaea);
+}
+  

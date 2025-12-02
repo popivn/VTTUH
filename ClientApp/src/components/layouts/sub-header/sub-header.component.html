@@ -1,3 +1,75 @@
-<div class="sub-header">
-    <h1>here is sub header</h1>
+
+  <div class="sub-header-sticky sticky-top sticky-top ">
+    <div class="sub-header"></div>
+    <div class="bg-white py-2 border-top vtth-border-danger" style="box-shadow: 0 0.5rem 1rem rgba(73, 14, 13, 0.2) !important;">
+        <div class="">
+            <ul class="d-flex justify-content-start justify-content-md-center list-unstyled mb-0 px-2 px-md-3 flex-nowrap sub-header-menu">
+                <!-- Nhóm chính (liệt kê một số nút chính) -->
+                <!-- Desktop/Tablet: hiện tất cả items -->
+                <li *ngFor="let item of menuItems" 
+                    class="d-none d-sm-inline-block mx-1" style="width: 180px;">
+                    <button type="button" 
+                            class="vtth-btn vtth-btn-red rounded-pill shadow-sm text-center sub-header-btn w-100"
+                            [class.active]="isActive(item.id)"
+                            (click)="onMenuItemClick(item)">
+                        {{ item.label }}
+                    </button>
+                </li>
+                
+                <!-- Mobile: chỉ hiện 2 items đầu -->
+                <li *ngFor="let item of menuItems.slice(0, 2)" 
+                    class="d-inline-block d-sm-none" style="width: 180px;">
+                    <button type="button" 
+                            class="vtth-btn vtth-btn-red rounded-pill shadow-sm text-center sub-header-btn w-100"
+                            [class.active]="isActive(item.id)"
+                            (click)="onMenuItemClick(item)">
+                        {{ item.label }}
+                    </button>
+                </li>
+
+                <!-- Nút Dropdown cho các mục phụ - sử dụng position-static để Bootstrap dropdown không bị cắt -->
+                <li class="dropdown px-0 mx-1 position-static sub-header-dropdown">
+                    <button class="vtth-btn vtth-btn-red rounded-pill w-100 d-flex align-items-center justify-content-center dropdown-toggle shadow-sm sub-header-btn"
+                        type="button" 
+                        id="moreMenuButton" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        <span class="d-none d-md-inline">Xem thêm</span>
+                        <span class="d-md-none">...</span>
+                        
+                    </button>
+                    <ul class="dropdown-menu shadow-lg rounded-4 py-2 py-md-3 animate__animated animate__fadeIn vtth-dropdown-menu" 
+                        aria-labelledby="moreMenuButton">
+                        <!-- Trên mobile: thêm các menu items bị ẩn vào dropdown -->
+                        <li *ngFor="let item of (isMobile ? menuItems.slice(2) : [])" 
+                            class="d-sm-none">
+                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
+                            (click)="onMenuItemClick(item)"
+                            [href]="item.route || '#'">
+                                <span class="vtth-dropdown-icon">
+                                    <i [ngClass]="getMenuIcon(item.id)"></i>
+                                </span>
+                                <span>{{ item.label }}</span>
+                            </a>
+                        </li>
+                        
+                        <!-- Separator trên mobile -->
+                        <li *ngIf="isMobile && menuItems.length > 2" class="dropdown-divider d-sm-none"></li>
+                        
+                        <!-- Dropdown items -->
+                        <li *ngFor="let item of dropdownItems">
+                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
+                            (click)="onMenuItemClick(item)"
+                            [href]="item.route || '#'">
+                                <span class="vtth-dropdown-icon">
+                                    <i [ngClass]="item.icon || 'bi-circle'"></i>
+                                </span>
+                                <span>{{ item.label }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
