@@ -57,7 +57,8 @@
   <!-- Experts Grid -->
   <div class="container experts-grid-wrapper my-4">
     <div class="row g-4">
-      <div *ngFor="let expert of filteredExperts" class="col-12 col-sm-6 col-lg-4" [@slideInOut]>
+      <!-- Remove animation for test: [@slideInOut] -->
+      <div *ngFor="let expert of filteredExperts" class="col-12 col-sm-6 col-lg-4">
         <div
           class="card h-100 shadow hover-shadow-sm expert-card border-0"
           (click)="selectExpert(expert)"
