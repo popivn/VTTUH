@@ -27,6 +27,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -59,12 +60,23 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "host": "0.0.0.0"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "ClientApp:build:production"
+              "buildTarget": "ClientApp:build:production",
+              "allowedHosts": [
+                "all",
+                "adapted-entirely-pangolin.ngrok-free.app"
+              ]
             },
             "development": {
-              "buildTarget": "ClientApp:build:development"
+              "buildTarget": "ClientApp:build:development",
+              "allowedHosts": [
+                "all",
+                "adapted-entirely-pangolin.ngrok-free.app"
+              ]
             }
           },
           "defaultConfiguration": "development"
@@ -87,12 +99,12 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss"
             ]
           }
         }
       }
-    } 
+    }
   }
 }
