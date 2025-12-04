@@ -14,13 +14,6 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'site-setting',
-        data: { name: 'site-setting-root' },
-        children: [
-            { path: '', component: SiteSettingComponent, data: { name: 'site-setting' } },
-        ]
-    },
-    {
         path: 'about-us',
         component: MainLayoutComponent,
         data: { name: 'about-us-layout' },

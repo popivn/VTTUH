@@ -1,0 +1,15 @@
+.aboutus-root h2, .aboutus-root h3 {
+    letter-spacing: .01em;
+    word-break: break-word;
+  }
+  .aboutus-root ul {
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+  }
+  @media (max-width: 600px) {
+    .aboutus-root section { padding-left: 4px; padding-right: 4px; }
+    .aboutus-root .rounded-4 { border-radius: 1rem !important; }
+    .aboutus-root h2, .aboutus-root h3 { font-size: 1.2rem !important; }
+    .aboutus-root .fw-bold { font-size: 1rem; }
+    .aboutus-root .fw-medium { font-size: 1rem; }
+  }

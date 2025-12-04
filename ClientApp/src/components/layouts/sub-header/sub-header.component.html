@@ -1,7 +1,7 @@
 
   <div class="sub-header-sticky sticky-top sticky-top ">
     <div class="py-3 border-top vtth-border-danger vtth-bg-danger" style="box-shadow: 0 0.5rem 1rem rgba(73, 14, 13, 0.2) !important;">
-        <div class="">
+        <div class="overflow-hidden">
             <ul class="d-flex justify-content-start justify-content-md-center list-unstyled mb-0 px-2 px-md-3 flex-nowrap sub-header-menu">
                 <!-- Nhóm chính (liệt kê một số nút chính) -->
                 <!-- Desktop/Tablet: hiện tất cả items -->
@@ -10,14 +10,17 @@
                     <button type="button" 
                             class="vtth-btn vtth-btn-red rounded-pill shadow-sm text-center sub-header-btn w-100"
                             [class.active]="isActive(item.id)"
-                            (click)="onMenuItemClick(item)">
+                            (click)="onMenuItemClick(item)"
+                            [attr.data-active]="isActive(item.id)"
+                            >
+                            
                         {{ item.label }}
                     </button>
                 </li>
                 
                 <!-- Mobile: chỉ hiện 2 items đầu -->
                 <li *ngFor="let item of menuItems.slice(0, 2)" 
-                    class="d-inline-block d-sm-none" style="width: 180px;">
+                    class="d-inline-block d-sm-none ms-2" style="width: 180px;">
                     <button type="button" 
                             class="vtth-btn vtth-btn-red rounded-pill shadow-sm text-center sub-header-btn w-100"
                             [class.active]="isActive(item.id)"
@@ -34,7 +37,7 @@
                         data-bs-toggle="dropdown" 
                         aria-expanded="false">
                         <span class="d-none d-md-inline">Xem thêm</span>
-                        <span class="d-md-none">...</span>
+                        <span class="d-md-none">Thêm</span>
                         
                     </button>
                     <ul class="dropdown-menu shadow-lg rounded-4 py-2 py-md-3 animate__animated animate__fadeIn vtth-dropdown-menu" 

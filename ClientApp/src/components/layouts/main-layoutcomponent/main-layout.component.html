@@ -1,7 +1,17 @@
 <header></header>
 <sub-header></sub-header>
+<button
+  class="btn d-md-none position-fixed top-50 translate-middle-y m-1 shadow-sm vtth-border-danger bg-light"
+  style="right: -24px; z-index: 1; border-radius: 1000px;"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#mobileMenu"
+  aria-controls="mobileMenu"
+>
+  <i class="bi bi-arrow-left fs-6"></i>
+</button>
 
 <main class="min-vh-100">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </main>
-<footer></footer>
+<custom-footer></custom-footer>
