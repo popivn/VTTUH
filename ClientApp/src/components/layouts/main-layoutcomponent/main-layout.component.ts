@@ -5,6 +5,7 @@ import { RouterOutlet } from "@angular/router";
 import { SubHeaderComponent } from "../sub-header/sub-header.component";
 @Component({
     selector: 'main-layout',
+    standalone: true,
     templateUrl: './main-layout.component.html',
     imports: [HeaderComponent, FooterComponent,RouterOutlet, SubHeaderComponent],
 })

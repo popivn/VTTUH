@@ -5,6 +5,8 @@ import { SiteSettingComponent } from '../components/setting/site-setting/site-se
 import { AboutUsComponent } from '../components/about-us/about-us-component/about-us.component';
 import { ExpertComponent } from '../components/expert/expert-componet/expert.component';
 import { AppointmentComponent } from '../appointment/appointment.component';
+import { NewsComponent } from '../components/news/news-component/news.component';
+import { NewsDetailComponent } from '../components/news/news-detail/news-detail.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +38,15 @@ export const routes: Routes = [
         data: { name: 'appointment-layout' },
         children: [
             { path: '', component: AppointmentComponent, data: { name: 'appointment' } },
+        ]
+    },
+    {
+        path: 'news',
+        component: MainLayoutComponent,
+        data: { name: 'news-layout' },
+        children: [
+            { path: '', component: NewsComponent, data: { name: 'news' } },
+            { path: ':slug', component: NewsDetailComponent, data: { name: 'news-detail' } },
         ]
     }
 ];

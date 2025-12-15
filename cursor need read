@@ -1,0 +1,11 @@
+cần code theo cấu trúc hiện tại
+một component page cần có
+file ts
+file html
+
+không cần file css nếu không cần thiết
+dùng bootrap không dùng css thuần nếu không cần  thiết
+đã có custome  css ở
+ClientApp\src\styles\_healthcare-colors.scss
+
+ưu tiên dùng class css custom hơn css mặc định của bootrap
