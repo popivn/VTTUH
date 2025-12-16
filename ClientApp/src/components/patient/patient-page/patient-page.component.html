@@ -1,0 +1,25 @@
+<!-- Breadcrumb -->
+<nav *ngIf="showBreadcrumb" aria-label="breadcrumb" class="mb-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/" class="text-decoration-none">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/patient" class="text-decoration-none">Dành cho bệnh nhân</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+  </ol>
+</nav>
+
+<!-- Page Header -->
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-header vtth-bg-primary text-white border-0 p-4">
+    <h2 class="m-0 fw-bold">
+      <i [class]="icon + ' me-2'"></i>{{ title }}
+    </h2>
+  </div>
+  <div class="card-body p-4 p-md-5">
+    <div [innerHTML]="content"></div>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { debounceTime, filter } from 'rxjs/operators';
     templateUrl: './sub-header.component.html',
     styleUrl: './sub-header.component.css',
     standalone: true,
-    imports: [CommonModule]
+    imports: [CommonModule, RouterModule]
 })
 export class SubHeaderComponent implements OnInit, OnDestroy {
     private router = inject(Router);
@@ -28,7 +28,23 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
     ];
 
     dropdownItems = [
-        { id: 'patient', label: 'Dành cho bệnh nhân', route: '/patient', icon: 'bi-heart-pulse' },
+        { 
+            id: 'patient', 
+            label: 'Dành cho bệnh nhân', 
+            route: '/patient', 
+            icon: 'bi-heart-pulse',
+            hasSubmenu: true,
+            submenu: [
+                { label: 'Quy trình khám chữa bệnh', route: '/patient/quy-trinh-kham' },
+                { label: 'Bảng giá và gói dịch vụ', route: '/patient/bang-gia' },
+                { label: 'Thanh toán và BHYT', route: '/patient/thanh-toan' },
+                { label: 'Tiện ích trực tuyến', route: '/patient/tien-ich' },
+                { label: 'Thông tin thăm bệnh', route: '/patient/tham-benh' },
+                { label: 'Dịch vụ hỗ trợ y tế', route: '/patient/dich-vu' },
+                { label: 'Hỗ trợ cộng đồng', route: '/patient/cong-dong' },
+                { label: 'Phản hồi và góp ý', route: '/patient/phan-hoi' }
+            ]
+        },
         { id: 'staff', label: 'Dành cho cán bộ y tế', route: '/staff', icon: 'bi-person-badge' },
         { id: 'online', label: 'Dịch vụ trực tuyến', route: '/online-services', icon: 'bi-globe' },
         { id: 'vaccination', label: 'Tiêm chủng', route: '/vaccination', icon: 'bi-shield-plus' },
@@ -36,6 +52,8 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
         { id: 'invoice', label: 'Tra cứu hóa đơn điện tử', route: '/invoice', icon: 'bi-receipt' },
         { id: 'events', label: 'Sự kiện', route: '/events', icon: 'bi-stars' }
     ];
+    
+    patientSubmenuOpen = false;
 
     //#region Angular Lifecycle
 

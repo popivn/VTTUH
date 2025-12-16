@@ -47,7 +47,7 @@
                             class="d-sm-none">
                             <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
                             (click)="onMenuItemClick(item)"
-                            [href]="item.route || '#'">
+                            [routerLink]="item.route || '/'">
                                 <span class="vtth-dropdown-icon">
                                     <i [ngClass]="getMenuIcon(item.id)"></i>
                                 </span>
@@ -60,9 +60,38 @@
                         
                         <!-- Dropdown items -->
                         <li *ngFor="let item of dropdownItems">
-                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
-                            (click)="onMenuItemClick(item)"
-                            [href]="item.route || '#'">
+                            <!-- Item with submenu -->
+                            <div *ngIf="item.hasSubmenu && item.submenu" class="dropdown-submenu position-relative">
+                                <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center justify-content-between gap-2" 
+                                [routerLink]="item.route || '/'"
+                                (click)="patientSubmenuOpen = !patientSubmenuOpen">
+                                    <span class="d-flex align-items-center gap-2">
+                                        <span class="vtth-dropdown-icon">
+                                            <i [ngClass]="item.icon || 'bi-circle'"></i>
+                                        </span>
+                                        <span>{{ item.label }}</span>
+                                    </span>
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                                <!-- Submenu -->
+                                <!-- Dịch chuyển submenu sang bên trái để không bị khuất khi ở sát mép phải -->
+                                <ul class="dropdown-menu shadow-lg rounded-4 py-2 position-absolute end-100 top-0 mt-0" 
+                                    [class.show]="patientSubmenuOpen"
+                                    style="min-width: 250px;">
+                                    <li *ngFor="let subItem of item.submenu">
+                                        <a class="vtth-dropdown-item py-2 px-3 small rounded-3 mb-1 d-block text-decoration-none" 
+                                        [routerLink]="subItem.route"
+                                        (click)="patientSubmenuOpen = false; onMenuItemClick({route: subItem.route})">
+                                            {{ subItem.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Regular item -->
+                            <a *ngIf="!item.hasSubmenu || !item.submenu"
+                                class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
+                                (click)="onMenuItemClick(item)"
+                                [routerLink]="item.route || '/'">
                                 <span class="vtth-dropdown-icon">
                                     <i [ngClass]="item.icon || 'bi-circle'"></i>
                                 </span>

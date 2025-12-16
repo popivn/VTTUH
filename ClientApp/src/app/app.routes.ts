@@ -7,6 +7,9 @@ import { ExpertComponent } from '../components/expert/expert-componet/expert.com
 import { AppointmentComponent } from '../appointment/appointment.component';
 import { NewsComponent } from '../components/news/news-component/news.component';
 import { NewsDetailComponent } from '../components/news/news-detail/news-detail.component';
+import { PatientComponent } from '../components/patient/patient-component/patient.component';
+import { PatientIndexComponent } from '../components/patient/patient-index/patient-index.component';
+import { PatientPageComponent } from '../components/patient/patient-page/patient-page.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +50,54 @@ export const routes: Routes = [
         children: [
             { path: '', component: NewsComponent, data: { name: 'news' } },
             { path: ':slug', component: NewsDetailComponent, data: { name: 'news-detail' } },
+        ]
+    },
+    {
+        path: 'patient',
+        component: MainLayoutComponent,
+        data: { name: 'patient-layout' },
+        children: [
+            {
+                path: '',
+                component: PatientComponent,
+                children: [
+                    { path: '', component: PatientIndexComponent, data: { name: 'patient-index' } },
+                    // Quy trình khám chữa bệnh
+                    { path: 'quy-trinh-kham', component: PatientPageComponent, data: { name: 'patient-process', title: 'Quy trình khám chữa bệnh', icon: 'bi-clipboard-check' } },
+                    { path: 'quy-trinh-kham/ngoai-tru', component: PatientPageComponent, data: { name: 'patient-outpatient', title: 'Quy trình khám ngoại trú', icon: 'bi-person-walking' } },
+                    { path: 'quy-trinh-kham/noi-tru', component: PatientPageComponent, data: { name: 'patient-inpatient', title: 'Quy trình khám nội trú, nhập viện và xuất viện', icon: 'bi-hospital' } },
+                    { path: 'quy-trinh-kham/huong-dan-noi-tru', component: PatientPageComponent, data: { name: 'patient-inpatient-guide', title: 'Hướng dẫn điều trị nội trú cho bệnh nhân', icon: 'bi-journal-text' } },
+                    // Bảng giá và gói dịch vụ
+                    { path: 'bang-gia', component: PatientPageComponent, data: { name: 'patient-pricing', title: 'Bảng giá và gói dịch vụ', icon: 'bi-cash-stack' } },
+                    { path: 'bang-gia/dich-vu', component: PatientPageComponent, data: { name: 'patient-price-list', title: 'Bảng giá dịch vụ bệnh viện', icon: 'bi-list-ul' } },
+                    { path: 'bang-gia/goi-dich-vu', component: PatientPageComponent, data: { name: 'patient-packages', title: 'Gói dịch vụ trọn gói', icon: 'bi-box-seam' } },
+                    { path: 'bang-gia/giuong-benh', component: PatientPageComponent, data: { name: 'patient-beds', title: 'Giường bệnh nội trú', icon: 'bi-bed' } },
+                    // Thanh toán và chính sách bảo hiểm
+                    { path: 'thanh-toan', component: PatientPageComponent, data: { name: 'patient-payment', title: 'Thanh toán và chính sách bảo hiểm', icon: 'bi-credit-card' } },
+                    { path: 'thanh-toan/bhyt', component: PatientPageComponent, data: { name: 'patient-insurance', title: 'Hướng dẫn thanh toán Bảo hiểm Y tế (BHYT)', icon: 'bi-shield-check' } },
+                    { path: 'thanh-toan/che-do', component: PatientPageComponent, data: { name: 'patient-policies', title: 'Chế độ chính sách', icon: 'bi-file-earmark-text' } },
+                    // Tiện ích trực tuyến
+                    { path: 'tien-ich', component: PatientPageComponent, data: { name: 'patient-online', title: 'Hướng dẫn tiện ích trực tuyến và tra cứu', icon: 'bi-laptop' } },
+                    { path: 'tien-ich/tra-cuu-ket-qua', component: PatientPageComponent, data: { name: 'patient-test-results', title: 'Tra cứu kết quả xét nghiệm trực tuyến', icon: 'bi-search' } },
+                    { path: 'tien-ich/khao-sat', component: PatientPageComponent, data: { name: 'patient-feedback-form', title: 'Phiếu khảo sát mức độ hài lòng khách hàng', icon: 'bi-clipboard-heart' } },
+                    // Thông tin thăm bệnh
+                    { path: 'tham-benh', component: PatientPageComponent, data: { name: 'patient-visitor', title: 'Thông tin thăm bệnh và hỗ trợ', icon: 'bi-people' } },
+                    { path: 'tham-benh/thong-tin', component: PatientPageComponent, data: { name: 'patient-visitor-info', title: 'Thông tin dành cho khách thăm bệnh', icon: 'bi-info-circle' } },
+                    { path: 'tham-benh/huong-dan', component: PatientPageComponent, data: { name: 'patient-visitor-guide', title: 'Hướng dẫn khách hàng điều trị nội trú', icon: 'bi-book' } },
+                    // Dịch vụ hỗ trợ y tế
+                    { path: 'dich-vu', component: PatientPageComponent, data: { name: 'patient-services', title: 'Dịch vụ hỗ trợ y tế', icon: 'bi-heart-pulse' } },
+                    { path: 'dich-vu/xe-cap-cuu', component: PatientPageComponent, data: { name: 'patient-ambulance', title: 'Đặt xe cấp cứu, đón/rước bệnh nhân', icon: 'bi-truck' } },
+                    { path: 'dich-vu/cham-soc-tai-nha', component: PatientPageComponent, data: { name: 'patient-home-care', title: 'Chăm sóc tại nhà, lấy mẫu xét nghiệm tại nhà', icon: 'bi-house-heart' } },
+                    { path: 'dich-vu/kham-online', component: PatientPageComponent, data: { name: 'patient-online-consult', title: 'Khám online với chuyên gia', icon: 'bi-camera-video' } },
+                    // Cộng đồng
+                    { path: 'cong-dong', component: PatientPageComponent, data: { name: 'patient-community', title: 'Chia sẻ yêu thương và hỗ trợ cộng đồng', icon: 'bi-heart' } },
+                    { path: 'cong-dong/cau-lac-bo', component: PatientPageComponent, data: { name: 'patient-club', title: 'Câu lạc bộ bệnh nhân, hội chữ thập đỏ', icon: 'bi-people-fill' } },
+                    { path: 'cong-dong/danh-sach-ho-tro', component: PatientPageComponent, data: { name: 'patient-support-list', title: 'Danh sách bệnh nhân cần hỗ trợ', icon: 'bi-list-check' } },
+                    // Phản hồi
+                    { path: 'phan-hoi', component: PatientPageComponent, data: { name: 'patient-feedback', title: 'Phản hồi và góp ý', icon: 'bi-chat-left-text' } },
+                    { path: 'phan-hoi/hop-thu', component: PatientPageComponent, data: { name: 'patient-mailbox', title: 'Hộp thư bạn đọc', icon: 'bi-envelope' } },
+                ]
+            }
         ]
     }
 ];
