@@ -1,25 +1,38 @@
-// Healthcare Color System
-$vtth-primary: #680102;
-$vtth-primary-hover: darken($vtth-primary, 10%);
+// Healthcare Color System – Friendly, Calm, Professional for Healthcare (HIS/EMR/Clinic UI)
+// -------------------------------------------------------------------
+// 🌿 Teal/Blue-Based Colors for comfort, trust, and clarity
 
-$vtth-secondary: #e53935;
-$vtth-secondary-hover: darken($vtth-secondary, 10%);
+// Primary – Teal dịu
+$vtth-primary: #2FA4A9;
+$vtth-primary-hover: #23878B;
 
-$vtth-success: #4CAF50;
-$vtth-success-hover: darken($vtth-success, 10%);
+// Secondary – Blue nhạt (navigation, link)
+$vtth-secondary: #4A90E2;
+$vtth-secondary-hover: #357ABD;
 
-$vtth-warning: #FFB300;
-$vtth-warning-hover: darken($vtth-warning, 10%);
+// Success – Green dịu
+$vtth-success: #5CBF90;
+$vtth-success-hover: #48A97B;
 
+// Warning – Amber nhạt
+$vtth-warning: #F5B971;
+$vtth-warning-hover: #E0A45E;
+
+// Danger – Red trầm (for errors/warnings only)
 $vtth-danger: #680102;
-$vtth-danger-hover: darken($vtth-danger, 10%);
+$vtth-danger-hover: #680102;
 
-// Màu đỏ sáng hơn cho UI elements (sub-header, buttons)
-$vtth-red: #e53935;
-$vtth-red-hover: darken($vtth-red, 10%);
+// Info – Cyan nhẹ
+$vtth-info: #6EC6CA;
+$vtth-info-hover: #56B1B6;
 
-$vtth-info: #4CAF50;
-$vtth-info-hover: darken($vtth-info, 10%);
+// Accent – Teal-accent (as subtle highlight, replaces harsh reds)
+$vtth-accent: #7EC8C3;
+$vtth-accent-hover: #66B3AD;
+
+// Neutral backgrounds (khuyên dùng cho nền)
+$vtth-bg-soft: #F7FAFC;
+$vtth-bg-extra-soft: #F5F7F9;
 
 // Background utilities
 .vtth-bg-primary        { background-color: $vtth-primary !important; }
@@ -46,6 +59,11 @@ $vtth-info-hover: darken($vtth-info, 10%);
 .vtth-bg-info-hover:hover { background-color: $vtth-info-hover !important; }
 .vtth-bg-info-active.active { background-color: $vtth-info !important; color: #fff !important; }
 
+.vtth-bg-accent       { background-color: $vtth-accent !important; }
+.vtth-bg-accent-hover:hover { background-color: $vtth-accent-hover !important; }
+.vtth-bg-soft         { background-color: $vtth-bg-soft !important; }
+.vtth-bg-extra-soft   { background-color: $vtth-bg-extra-soft !important; }
+
 // Text utilities
 .vtth-text-primary        { color: $vtth-primary !important; }
 .vtth-text-primary-hover:hover { color: $vtth-primary-hover !important; }
@@ -71,6 +89,9 @@ $vtth-info-hover: darken($vtth-info, 10%);
 .vtth-text-info-hover:hover { color: $vtth-info-hover !important; }
 .vtth-text-info-active.active { color: $vtth-info !important; }
 
+.vtth-text-accent      { color: $vtth-accent !important; }
+.vtth-text-accent-hover:hover { color: $vtth-accent-hover !important; }
+
 // Border utilities
 .vtth-border-primary { border-color: $vtth-primary !important; }
 .vtth-border-secondary { border-color: $vtth-secondary !important; }
@@ -78,78 +99,81 @@ $vtth-info-hover: darken($vtth-info, 10%);
 .vtth-border-warning { border-color: $vtth-warning !important; }
 .vtth-border-danger { border-color: $vtth-danger !important; }
 .vtth-border-info { border-color: $vtth-info !important; }
+.vtth-border-accent { border-color: $vtth-accent !important; }
 
 // ----- Button utilities: Hover + Active + Focus states (Mixins & Button Classes) -----
 // Mixin cho trạng thái button
 @mixin vtth-state($color, $color-hover: null, $is-rounded: false) {
     $hover-color: if($color-hover != null, $color-hover, darken($color, 10%));
     $border-radius: if($is-rounded, 50px, 0.375rem);
-  
+
     // Bình thường: nền trắng, chữ màu, border màu
     background-color: #fff;
     color: $color;
     border: 1px solid $color;
     border-radius: $border-radius;
     transition: all 0.2s ease;
-  
+
     &:hover,
     &:focus {
       background-color: lighten($color, 45%); // hover nhẹ - nền màu nhạt
       color: $color; // giữ màu chữ
       border-color: $color;
       transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba($color, 0.15);
+      box-shadow: 0 2px 8px rgba($color, 0.10);
     }
-  
+
     &.active {
       background-color: $color; // nền màu khi active
-      color: white ;              // chữ trắng
+      color: white;
       border-color: $color;
-      box-shadow: 0 2px 8px rgba($color, 0.3);
+      box-shadow: 0 2px 8px rgba($color, 0.25);
       border: 2px solid white;
     }
-  
+
     &:active {
       transform: translateY(0);
     }
-  }
-  
-  // Base button class
-  .vtth-btn {
-    padding: .5rem 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-block;
-    transition: all 0.2s ease;
-    text-align: center;
-  }
-  
-  // Các button classes với màu
-  .vtth-btn-primary   { @include vtth-state($vtth-primary, $vtth-primary-hover); }
-  .vtth-btn-secondary { @include vtth-state($vtth-secondary, $vtth-secondary-hover); }
-  .vtth-btn-success   { @include vtth-state($vtth-success, $vtth-success-hover); }
-  .vtth-btn-warning   { @include vtth-state($vtth-warning, $vtth-warning-hover); }
-  .vtth-btn-danger    { @include vtth-state($vtth-danger, $vtth-danger-hover); }
-  .vtth-btn-info      { @include vtth-state($vtth-info, $vtth-info-hover); }
-  .vtth-btn-red       { @include vtth-state($vtth-danger, $vtth-red-hover); }
-  
-  // Variant rounded-pill cho các màu
-  .vtth-btn-primary.rounded-pill   { @include vtth-state($vtth-primary, $vtth-primary-hover, true); }
-  .vtth-btn-secondary.rounded-pill { @include vtth-state($vtth-secondary, $vtth-secondary-hover, true); }
-  .vtth-btn-success.rounded-pill   { @include vtth-state($vtth-success, $vtth-success-hover, true); }
-  .vtth-btn-warning.rounded-pill   { @include vtth-state($vtth-warning, $vtth-warning-hover, true); }
-  .vtth-btn-danger.rounded-pill    { @include vtth-state($vtth-danger, $vtth-danger-hover, true); }
-  .vtth-btn-info.rounded-pill      { @include vtth-state($vtth-info, $vtth-info-hover, true); }
-  .vtth-btn-red.rounded-pill       { @include vtth-state($vtth-danger, $vtth-red-hover, true); }
+}
+
+// Base button class
+.vtth-btn {
+  padding: .5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s ease;
+  text-align: center;
+  border-radius: 0.375rem;
+}
+
+// Các button classes với màu chính
+.vtth-btn-primary   { @include vtth-state($vtth-primary, $vtth-primary-hover); }
+.vtth-btn-secondary { @include vtth-state($vtth-secondary, $vtth-secondary-hover); }
+.vtth-btn-success   { @include vtth-state($vtth-success, $vtth-success-hover); }
+.vtth-btn-warning   { @include vtth-state($vtth-warning, $vtth-warning-hover); }
+.vtth-btn-danger    { @include vtth-state($vtth-danger, $vtth-danger-hover); }
+.vtth-btn-info      { @include vtth-state($vtth-info, $vtth-info-hover); }
+.vtth-btn-accent    { @include vtth-state($vtth-accent, $vtth-accent-hover); }
+
+// Variant rounded-pill cho các màu
+.vtth-btn-primary.rounded-pill   { @include vtth-state($vtth-primary, $vtth-primary-hover, true); }
+.vtth-btn-secondary.rounded-pill { @include vtth-state($vtth-secondary, $vtth-secondary-hover, true); }
+.vtth-btn-success.rounded-pill   { @include vtth-state($vtth-success, $vtth-success-hover, true); }
+.vtth-btn-warning.rounded-pill   { @include vtth-state($vtth-warning, $vtth-warning-hover, true); }
+.vtth-btn-danger.rounded-pill    { @include vtth-state($vtth-danger, $vtth-danger-hover, true); }
+.vtth-btn-info.rounded-pill      { @include vtth-state($vtth-info, $vtth-info-hover, true); }
+.vtth-btn-accent.rounded-pill    { @include vtth-state($vtth-accent, $vtth-accent-hover, true); }
 
 // ----- Dropdown Menu Item Mixin -----
-@mixin vtth-dropdown-item($color, $bg-gradient-start: #fff7f0, $bg-gradient-end: #ffeaea) {
+// Use accent for dropdown highlight, softer and easy on eyes
+@mixin vtth-dropdown-item($color, $bg-gradient-start: #f0fcfc, $bg-gradient-end: #e8f9f9) {
     color: $color;
     transition: 
         background 0.23s cubic-bezier(0.4, 1, 0.7, 1),
         transform 0.13s cubic-bezier(0.39, 0.57, 0.56, 1.36),
         box-shadow 0.18s;
-    
+
     &:hover,
     &:focus {
         background: linear-gradient(90deg, $bg-gradient-start 60%, $bg-gradient-end 100%);
@@ -158,20 +182,65 @@ $vtth-info-hover: darken($vtth-info, 10%);
         box-shadow: 0 3px 15px 0 rgba($color, 0.11), 0 2px 0 lighten($color, 25%) inset;
         text-decoration: none;
     }
-    
+
     &:active {
         transform: translateY(-2px) scale(1.01);
     }
 }
 
 .vtth-dropdown-item {
-    @include vtth-dropdown-item($vtth-red, #fff7f0, #fdeaea);
+    @include vtth-dropdown-item($vtth-accent, #f0fcfc, #e8f9f9);
 }
 
-// ---------------- Patient Sidebar Overrides ----------------
-// Bỏ màu active mặc định của Bootstrap, dùng màu brand $vtth-secondary
-.patient-sidebar .list-group-item.active {
-  background-color: $vtth-secondary !important;
-  border-color: $vtth-secondary !important;
+// ---------------- Patient Sidebar - Modern Design ----------------
+// Main menu items: dùng màu primary dịu khi active
+.patient-sidebar .patient-menu-item.active {
+  background-color: $vtth-primary !important;
   color: #fff !important;
+
+  .patient-icon-badge {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+  }
+
+  i {
+    color: #fff !important;
+  }
+}
+
+// Đảm bảo icon luôn hiển thị
+.patient-sidebar .patient-menu-item .patient-icon-badge i {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+// Submenu items: dùng màu secondary khi active (dịu hơn)
+.patient-sidebar .patient-submenu-item.active {
+  background-color: $vtth-secondary !important;
+  color: #fff !important;
+
+  i {
+    color: #fff !important;
+  }
+}
+
+// Hover effects: dùng màu primary/secondary nhạt khi hover sidebar
+.patient-sidebar .patient-menu-item:not(.active):hover {
+  background-color: rgba($vtth-primary, 0.07) !important;
+  transform: translateX(4px);
+}
+
+.patient-sidebar .patient-submenu-item:not(.active):hover {
+  background-color: rgba($vtth-secondary, 0.08) !important;
+  transform: translateX(4px);
+}
+
+// Smooth transitions
+.patient-menu-item,
+.patient-submenu-item {
+  transition: all 0.3s ease;
+}
+
+.patient-icon-badge {
+  transition: all 0.3s ease;
 }

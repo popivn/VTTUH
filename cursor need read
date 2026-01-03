@@ -9,3 +9,5 @@ dùng bootrap không dùng css thuần nếu không cần  thiết
 ClientApp\src\styles\_healthcare-colors.scss
 
 ưu tiên dùng class css custom hơn css mặc định của bootrap
+
+yêu cầu cấu trúc giao diện hiện đại thân thiện với người dùng
