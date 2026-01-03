@@ -32,7 +32,7 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
             id: 'patient', 
             label: 'Dành cho bệnh nhân', 
             route: '/patient', 
-            icon: 'bi-people-fill', // Đổi icon khác (ví dụ: bi-people-fill)
+            icon: 'bi bi-heart-pulse', // Dùng icon giống @patient.component.html (10)
             hasSubmenu: true,
             submenu: [
                 { label: 'Quy trình khám chữa bệnh', route: '/patient/quy-trinh-kham' },
@@ -54,6 +54,10 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
     ];
     
     patientSubmenuOpen = false;
+    hoveredItem: string | null = null;
+    hoveredDropdownMobileItem: string | null = null;
+    hoveredDropdownItem: string | null = null;
+    hoveredSubDropdownItem: string | null = null;
 
     //#region Angular Lifecycle
 
@@ -67,7 +71,7 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
 
         // Listen to router events to set active menu item
         this.router.events
-            .pipe(filter(e => e instanceof NavigationEnd))
+            .pipe(filter((e: any) => e instanceof NavigationEnd))
             .subscribe(() => {
                 let current = this.router.routerState.root;
                 while (current.firstChild) {

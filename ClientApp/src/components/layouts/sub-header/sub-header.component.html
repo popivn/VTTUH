@@ -1,55 +1,79 @@
-
-  <div class="sub-header-sticky sticky-top" style="z-index: 1080;">
-    <div class="py-3 border-top vtth-border-primary vtth-bg-primary" style="box-shadow: 0 0.5rem 1rem rgba(73, 14, 13, 0.2) !important;">
+  <div class="sub-header-sticky sticky-top bg-white shadow-sm">
+    <div class="py-3">
         <div class="overflow-hidden">
             <ul class="d-flex justify-content-start justify-content-md-center list-unstyled mb-0 px-2 px-md-3 flex-nowrap sub-header-menu">
                 <!-- Nhóm chính (liệt kê một số nút chính) -->
                 <!-- Desktop/Tablet: hiện tất cả items -->
                 <li *ngFor="let item of menuItems" 
                     class="d-none d-sm-inline-block mx-1" style="width: 180px;">
-                    <button type="button" 
-                            class="vtth-btn vtth-btn-primary rounded-pill shadow-sm text-center sub-header-btn w-100"
+                    <button type="button"
+                            class="btn rounded-pill text-center sub-header-btn w-100 border-0 bg-white text-secondary"
                             [class.active]="isActive(item.id)"
+                            [ngClass]="{
+                              'text-primary bg-primary bg-opacity-10': isActive(item.id),
+                              'text-secondary': !isActive(item.id)
+                            }"
                             (click)="onMenuItemClick(item)"
                             [attr.data-active]="isActive(item.id)"
-                            >
-                            
-                        {{ item.label }}
-                    </button>
-                </li>
-                
-                <!-- Mobile: chỉ hiện 2 items đầu -->
-                <li *ngFor="let item of menuItems.slice(0, 2)" 
-                    class="d-inline-block d-sm-none ms-2" style="width: 180px;">
-                    <button type="button" 
-                            class="vtth-btn vtth-btn-primary rounded-pill shadow-sm text-center sub-header-btn w-100"
-                            [class.active]="isActive(item.id)"
-                            (click)="onMenuItemClick(item)">
+                    >
                         {{ item.label }}
                     </button>
                 </li>
 
+                <!-- Mobile: chỉ hiện 2 items đầu -->
+                <li *ngFor="let item of menuItems.slice(0, 2)" 
+                    class="d-inline-block d-sm-none ms-2" style="width: 180px;">
+                    <button type="button"
+                            class="btn rounded-pill text-center sub-header-btn w-100 border-0 bg-white text-secondary"
+                            [class.active]="isActive(item.id)"
+                            [ngClass]="{
+                              'text-primary bg-primary bg-opacity-10': isActive(item.id),
+                              'text-secondary': !isActive(item.id)
+                            }"
+                            (click)="onMenuItemClick(item)"
+                    >
+                        {{ item.label }}
+                    </button>
+                </li>
+ 
                 <!-- Nút Dropdown cho các mục phụ - sử dụng position-static để Bootstrap dropdown không bị cắt -->
                 <li class="dropdown px-0 mx-1 position-static sub-header-dropdown">
-                    <button class="vtth-btn vtth-btn-primary rounded-pill w-100 d-flex align-items-center justify-content-center dropdown-toggle shadow-sm sub-header-btn"
+                    <button class="btn rounded-pill w-100 d-flex align-items-center justify-content-center dropdown-toggle sub-header-btn border-0 bg-white 
+                                   text-secondary
+                                   "
                         type="button" 
                         id="moreMenuButton" 
                         data-bs-toggle="dropdown" 
-                        aria-expanded="false">
+                        aria-expanded="false"
+                        style="transition: background 0.15s, color 0.15s;"
+                        (mouseenter)="hoveredItem = 'dropdown'"
+                        (mouseleave)="hoveredItem = null"
+                        [ngStyle]="hoveredItem === 'dropdown' ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
+                    >
                         <span class="d-none d-md-inline">Xem thêm</span>
                         <span class="d-md-none">Thêm</span>
-                        
                     </button>
-                    <ul class="dropdown-menu shadow-lg rounded-4 py-2 py-md-3 animate__animated animate__fadeIn vtth-dropdown-menu" 
+                    <ul class="dropdown-menu rounded-4 py-2 py-md-3 animate__animated animate__fadeIn vtth-dropdown-menu" 
                         aria-labelledby="moreMenuButton">
                         <!-- Trên mobile: thêm các menu items bị ẩn vào dropdown -->
                         <li *ngFor="let item of (isMobile ? menuItems.slice(2) : [])" 
                             class="d-sm-none">
-                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2" 
+                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2 bg-white text-secondary"
                             (click)="onMenuItemClick(item)"
-                            [routerLink]="item.route || '/'">
+                            [routerLink]="item.route || '/'"
+                            [ngClass]="{
+                              'text-primary bg-primary bg-opacity-10': isActive(item.id),
+                              'text-secondary': !isActive(item.id)
+                            }"
+                            style="transition: background 0.15s, color 0.15s;"
+                            (mouseenter)="hoveredDropdownMobileItem = item.id"
+                            (mouseleave)="hoveredDropdownMobileItem = null"
+                            [ngStyle]="hoveredDropdownMobileItem === item.id && !isActive(item.id) ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
+                            >
                                 <span class="vtth-dropdown-icon">
-                                    <i [ngClass]="getMenuIcon(item.id)"></i>
+                                    <i [ngClass]="getMenuIcon(item.id)" 
+                                       class="text-secondary" 
+                                       [class.text-primary]="isActive(item.id)"></i>
                                 </span>
                                 <span>{{ item.label }}</span>
                             </a>
@@ -67,25 +91,43 @@
                                (mouseenter)="patientSubmenuOpen = true"
                                (mouseleave)="patientSubmenuOpen = false">
                             <!-- MENU CHA -->
-                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center justify-content-between gap-2"
+                            <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 fw-semibold rounded-3 mb-2 d-flex align-items-center justify-content-between gap-2 bg-white text-secondary"
                                [routerLink]="item.route || '/'"
-                               (click)="$event.preventDefault()">
+                               (click)="$event.preventDefault()"
+                               [ngClass]="{
+                                 'text-primary bg-primary bg-opacity-10': isActive(item.id),
+                                 'text-secondary': !isActive(item.id)
+                               }"
+                               style="transition: background 0.15s, color 0.15s;"
+                               (mouseenter)="hoveredDropdownItem = item.id"
+                               (mouseleave)="hoveredDropdownItem = null"
+                               [ngStyle]="hoveredDropdownItem === item.id && !isActive(item.id) ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
+                            >
                               <span class="d-flex align-items-center gap-2">
                                 <span class="vtth-dropdown-icon">
-                                  <i [ngClass]="item.icon || 'bi-circle'"></i>
+                                  <i [ngClass]="item.icon || 'bi-circle'" 
+                                     class="text-secondary" 
+                                     [class.text-primary]="isActive(item.id)">
+                                  </i>
                                 </span>
                                 <span>{{ item.label }}</span>
                               </span>
                               <i class="bi bi-chevron-right small"></i>
                             </a>
                             <!-- SUBMENU -->
-                            <ul class="dropdown-menu shadow-lg rounded-4 py-2 position-absolute end-100 top-0 mt-0 z-3"
+                            <ul class="dropdown-menu rounded-4 py-2 position-absolute end-100 top-0 mt-0 z-3"
                                 [class.show]="patientSubmenuOpen"
                                 style="min-width:250px;">
                               <li *ngFor="let subItem of item.submenu">
-                                <a class="vtth-dropdown-item py-2 px-3 small rounded-3 mb-1 d-block"
+                                <a class="vtth-dropdown-item py-2 px-3 small rounded-3 mb-1 d-block bg-white text-secondary"
                                    [routerLink]="subItem.route"
-                                   (click)="patientSubmenuOpen = false; onMenuItemClick({ route: subItem.route })">
+                                   routerLinkActive="text-primary bg-primary bg-opacity-10"
+                                   (click)="patientSubmenuOpen = false; onMenuItemClick({ route: subItem.route })"
+                                   style="transition: background 0.15s, color 0.15s;"
+                                   (mouseenter)="hoveredSubDropdownItem = subItem.route"
+                                   (mouseleave)="hoveredSubDropdownItem = null"
+                                   [ngStyle]="hoveredSubDropdownItem === subItem.route ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
+                                >
                                   {{ subItem.label }}
                                 </a>
                               </li>
@@ -94,11 +136,23 @@
 
                           <!-- ITEM THƯỜNG -->
                           <a *ngIf="!item.hasSubmenu || !item.submenu"
-                             class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 border-0 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2"
+                             class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 fw-semibold rounded-3 mb-2 d-flex align-items-center gap-2 bg-white text-secondary"
                              [routerLink]="item.route || '/'"
-                             (click)="onMenuItemClick(item)">
+                             (click)="onMenuItemClick(item)"
+                             [ngClass]="{
+                               'text-primary bg-primary bg-opacity-10': isActive(item.id),
+                               'text-secondary': !isActive(item.id)
+                             }"
+                             style="transition: background 0.15s, color 0.15s;"
+                             (mouseenter)="hoveredDropdownItem = item.id"
+                             (mouseleave)="hoveredDropdownItem = null"
+                             [ngStyle]="hoveredDropdownItem === item.id && !isActive(item.id) ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
+                          >
                             <span class="vtth-dropdown-icon">
-                              <i [ngClass]="item.icon || 'bi-circle'"></i>
+                              <i [ngClass]="item.icon || 'bi-circle'" 
+                                 class="text-secondary" 
+                                 [class.text-primary]="isActive(item.id)">
+                              </i>
                             </span>
                             <span>{{ item.label }}</span>
                           </a>

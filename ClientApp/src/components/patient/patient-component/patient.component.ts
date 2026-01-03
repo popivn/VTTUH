@@ -39,7 +39,7 @@ export class PatientComponent implements OnInit {
       children: [
         { id: 'price-list', label: 'Bảng giá dịch vụ bệnh viện', route: '/patient/bang-gia/dich-vu', icon: 'bi-list-ul' },
         { id: 'packages', label: 'Gói dịch vụ trọn gói', route: '/patient/bang-gia/goi-dich-vu', icon: 'bi-box-seam' },
-        { id: 'beds', label: 'Giường bệnh nội trú', route: '/patient/bang-gia/giuong-benh', icon: 'bi-bed' }
+        { id: 'beds', label: 'Giường bệnh nội trú', route: '/patient/bang-gia/giuong-benh', icon: 'bi-house' }
       ]
     },
     {

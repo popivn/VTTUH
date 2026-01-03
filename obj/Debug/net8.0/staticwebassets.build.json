@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gU/GTgo8MxrBv0kxIkE79EZnctoVelOpyuTfy482AiU=",
+  "Hash": "AEocVGFEyP+wgOKVYdA/WYDFzOyTpBgj1Rmh8Yz5VAA=",
   "Source": "VTTH",
   "BasePath": "_content/VTTH",
   "Mode": "Default",
@@ -112,12 +112,12 @@
       "OriginalItemSpec": "wwwroot\\browser\\index.html"
     },
     {
-      "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\browser\\main-SMVITYM4.js",
+      "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\browser\\main-QAT2CCFQ.js",
       "SourceId": "VTTH",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\",
       "BasePath": "_content/VTTH",
-      "RelativePath": "browser/main-SMVITYM4.js",
+      "RelativePath": "browser/main-QAT2CCFQ.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -128,7 +128,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\browser\\main-SMVITYM4.js"
+      "OriginalItemSpec": "wwwroot\\browser\\main-QAT2CCFQ.js"
     },
     {
       "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\browser\\media\\bootstrap-icons-CVBWLLHT.woff2",
@@ -207,12 +207,12 @@
       "OriginalItemSpec": "wwwroot\\browser\\scripts-TTWY4XDY.js"
     },
     {
-      "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\browser\\styles-6JDEAOWC.css",
+      "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\browser\\styles-SDRQPJG7.css",
       "SourceId": "VTTH",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\",
       "BasePath": "_content/VTTH",
-      "RelativePath": "browser/styles-6JDEAOWC.css",
+      "RelativePath": "browser/styles-SDRQPJG7.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -223,7 +223,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\browser\\styles-6JDEAOWC.css"
+      "OriginalItemSpec": "wwwroot\\browser\\styles-SDRQPJG7.css"
     },
     {
       "Identity": "C:\\Workspace\\.Net\\VTTH\\wwwroot\\prerendered-routes.json",

@@ -244,3 +244,10 @@ $vtth-bg-extra-soft: #F5F7F9;
 .patient-icon-badge {
   transition: all 0.3s ease;
 }
+
+// ---------------- Sub Header Button Hover Effects ----------------
+.sub-header-btn:not(.active):hover {
+  background-color: #f5f5fb !important;
+  color: #2c62f6 !important;
+  transition: background 0.15s ease, color 0.15s ease;
+}

@@ -71,7 +71,7 @@ export const routes: Routes = [
                     { path: 'bang-gia', component: PatientPageComponent, data: { name: 'patient-pricing', title: 'Bảng giá và gói dịch vụ', icon: 'bi-cash-stack' } },
                     { path: 'bang-gia/dich-vu', component: PatientPageComponent, data: { name: 'patient-price-list', title: 'Bảng giá dịch vụ bệnh viện', icon: 'bi-list-ul' } },
                     { path: 'bang-gia/goi-dich-vu', component: PatientPageComponent, data: { name: 'patient-packages', title: 'Gói dịch vụ trọn gói', icon: 'bi-box-seam' } },
-                    { path: 'bang-gia/giuong-benh', component: PatientPageComponent, data: { name: 'patient-beds', title: 'Giường bệnh nội trú', icon: 'bi-bed' } },
+                    { path: 'bang-gia/giuong-benh', component: PatientPageComponent, data: { name: 'patient-beds', title: 'Giường bệnh nội trú', icon: 'bi-hospital-bed' } },
                     // Thanh toán và chính sách bảo hiểm
                     { path: 'thanh-toan', component: PatientPageComponent, data: { name: 'patient-payment', title: 'Thanh toán và chính sách bảo hiểm', icon: 'bi-credit-card' } },
                     { path: 'thanh-toan/bhyt', component: PatientPageComponent, data: { name: 'patient-insurance', title: 'Hướng dẫn thanh toán Bảo hiểm Y tế (BHYT)', icon: 'bi-shield-check' } },
