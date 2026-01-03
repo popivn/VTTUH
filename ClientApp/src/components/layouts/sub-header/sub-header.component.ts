@@ -32,7 +32,7 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
             id: 'patient', 
             label: 'Dành cho bệnh nhân', 
             route: '/patient', 
-            icon: 'bi-heart-pulse',
+            icon: 'bi-people-fill', // Đổi icon khác (ví dụ: bi-people-fill)
             hasSubmenu: true,
             submenu: [
                 { label: 'Quy trình khám chữa bệnh', route: '/patient/quy-trinh-kham' },
@@ -74,11 +74,7 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
                     current = current.firstChild;
                 }
                 const name = current.snapshot.data['name'];
-                // Debug logs (you can remove in production):
-                // console.log("CURRENT ROUTE NAME =", name);
                 this.setActiveByRouteName(name);
-                // Very important: since router events might be out of Angular zone,
-                // need to trigger a change detection or use markForCheck to ensure UI updates
                 this.cdr.detectChanges();
             });
 
@@ -90,21 +86,15 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
     }
 
     setActiveByRouteName(routeName: string): void {
-        // console.log('[SubHeaderComponent] setActiveByRouteName called with routeName:', routeName);
         const matched = this.menuItems.find(item => item.name === routeName);
-        // console.log('[SubHeaderComponent] Matched menuItem:', matched);
 
         if (matched) {
             this.activeMenuItem = matched.id;
-            // console.log('[SubHeaderComponent] Set activeMenuItem to:', matched.id);
         } else {
-            // Edge case: if top-level route (routeName nullish), try to match by route ""
             if (routeName === '' || routeName == null) {
                 const home = this.menuItems[0];
                 if (home) this.activeMenuItem = home.id;
             }
-            // console.log('[SubHeaderComponent] No matching menuItem found for routeName:', routeName);
-            // Optionally clear
         }
     }
 
@@ -145,18 +135,32 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
         if (item.route) {
             this.router.navigate([item.route]);
         }
-        // Immediately trigger change detection to assure the .active class is seen by Angular
         this.cdr.detectChanges();
     }
 
     isActive(itemId: string): boolean {
-        // Remove debug log for clarity in template function
         return this.activeMenuItem === itemId;
     }
 
     //#endregion
 
     //#region Utilities
+
+    /**
+     * Returns classes to be applied to the icon element for menu or dropdown.
+     * If not active, add 'vtth-bg-secondary' for background color.
+     * @param itemId Id of the menu or dropdown item.
+     * @param icon Icon class (bi-*)
+     */
+    getIconClasses(itemId: string, icon: string): string[] {
+        const isActive = this.isActive(itemId);
+        const classes = [icon];
+        if (!isActive) {
+            classes.push('vtth-bg-secondary');
+        }
+        // You may want to add spacing/size here too if needed
+        return classes;
+    }
 
     getMenuIcon(id: string): string {
         const iconMap: { [key: string]: string } = {

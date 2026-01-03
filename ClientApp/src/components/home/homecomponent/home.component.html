@@ -6,7 +6,7 @@
       <div class="col-12 col-lg-8">
         <div *ngIf="featuredArticles.length" class="card border-0 shadow-sm h-100 overflow-hidden">
           <!-- Responsive layout: stack vertically on mobile, keep side-by-side on md+ -->
-          <div class="row g-0 border vtth-border-danger flex-md-row flex-column">
+          <div class="row g-0 border vtth-border-primary flex-md-row flex-column">
             <!-- Featured Image Left -->
             <div class="col-md-5 col-12">
               <img 
@@ -20,9 +20,9 @@
               >
             </div>
             <!-- Featured Content Right -->
-            <div class="col-md-7 col-12 d-flex flex-column border vtth-border-danger">
+            <div class="col-md-7 col-12 d-flex flex-column border vtth-border-primary">
               <div class="p-4 pb-2">
-                <h2 class="fw-bold mb-3 text-danger" style="font-size: 1.5rem; line-height: 1.25;">
+                <h2 class="fw-bold mb-3 vtth-text-primary" style="font-size: 1.5rem; line-height: 1.25;">
                   {{ featuredArticles[0].title }}
                 </h2>
                 <p class="text-muted mb-4" style="font-size:1.06rem;">
@@ -35,7 +35,7 @@
                   {{ featuredArticles[0].date | date: 'dd/MM/yyyy' }}
                 </small>
                 <button
-                  class="btn btn-danger px-4 py-2 fw-bold shadow-sm"
+                  class="btn vtth-btn vtth-btn-primary px-4 py-2 fw-bold shadow-sm"
                   style="border-radius:30px;"
                   (click)="openArticle(featuredArticles[0])"
                 >
@@ -48,7 +48,7 @@
           <div class="row mt-4 g-3" *ngIf="featuredArticles.length > 1">
             <ng-container *ngFor="let art of featuredArticles.slice(1); let i = index; trackBy: trackById">
               <div class="col-12">
-                <div class="card border-0 shadow-sm transition h-100 flex-md-row flex-column align-items-center border-bottom vtth-border-danger shadow-sm" style="min-height:110px;">
+                <div class="card border-0 shadow-sm transition h-100 flex-md-row flex-column align-items-center border-bottom vtth-border-primary shadow-sm" style="min-height:110px;">
                   <img
                     [src]="art.image"
                     alt="{{ art.title }}"
@@ -66,7 +66,7 @@
                         {{ art.date | date: 'dd/MM/yyyy' }}
                       </small>
                       <button
-                        class="btn btn-outline-danger btn-sm px-3 transition"
+                        class="btn vtth-btn vtth-btn-outline-primary btn-sm px-3 transition"
                         (click)="openArticle(art)"
                         style="border-radius: 24px;"
                       >
@@ -95,7 +95,7 @@
                   routerLink="/dat-so-kham"
                   class="d-block p-3 p-lg-4 text-decoration-none text-dark transition"
                 >
-                  <i class="bi bi-calendar-check me-2 vtth-text-danger"></i>
+                  <i class="bi bi-calendar-check me-2 vtth-text-primary"></i>
                   Đặt hẹn khám bệnh
                 </a>
               </li>
@@ -104,7 +104,7 @@
                   routerLink="/bang-gia"
                   class="d-block p-3 p-lg-4 text-decoration-none text-dark transition"
                 >
-                  <i class="bi bi-receipt me-2 vtth-text-danger"></i>
+                  <i class="bi bi-receipt me-2 vtth-text-primary"></i>
                   Bảng giá dịch vụ
                 </a>
               </li>
@@ -113,7 +113,7 @@
                   routerLink="/tu-van"
                   class="d-block p-3 p-lg-4 text-decoration-none text-dark transition"
                 >
-                  <i class="bi bi-chat-dots me-2 vtth-text-danger"></i>
+                  <i class="bi bi-chat-dots me-2 vtth-text-primary"></i>
                   Tư vấn trực tuyến
                 </a>
               </li>
@@ -122,7 +122,7 @@
                   routerLink="/hoi-dap"
                   class="d-block p-3 p-lg-4 text-decoration-none text-dark transition"
                 >
-                  <i class="bi bi-question-circle me-2 vtth-text-danger"></i>
+                  <i class="bi bi-question-circle me-2 vtth-text-primary"></i>
                   Hỏi đáp
                 </a>
               </li>
@@ -187,7 +187,7 @@
                 {{ article.date | date: 'dd/MM/yyyy' }}
               </small>
               <button 
-                class="btn btn-sm btn-outline-danger"
+                class="btn btn-sm vtth-btn vtth-btn-outline-primary"
                 (click)="openArticle(article)"
               >
                 Đọc thêm
@@ -201,7 +201,7 @@
     <!-- Load More Button -->
     <div class="text-center mt-4">
       <button 
-        class="btn btn-outline-danger"
+        class="btn vtth-btn vtth-btn-outline-primary"
         (click)="loadLatestArticles()"
         [disabled]="loadingNews || !hasMoreNews"
       >
@@ -239,7 +239,7 @@
             </p>
             <a 
               [routerLink]="dept.link"
-              class="btn btn-sm btn-outline-danger"
+              class="btn btn-sm vtth-btn vtth-btn-outline-primary"
             >
               Xem chi tiết
             </a>
