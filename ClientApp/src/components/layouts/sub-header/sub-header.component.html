@@ -88,8 +88,8 @@
                           <!-- ITEM CÓ SUBMENU -->
                           <div *ngIf="item.hasSubmenu && item.submenu"
                                class="dropdown-submenu position-relative"
-                               (mouseenter)="patientSubmenuOpen = true"
-                               (mouseleave)="patientSubmenuOpen = false">
+                               (mouseenter)="item.id === 'patient' ? patientSubmenuOpen = true : (item.id === 'staff' ? staffSubmenuOpen = true : (item.id === 'online' ? onlineSubmenuOpen = true : (item.id === 'vaccination' ? vaccinationSubmenuOpen = true : null)))"
+                               (mouseleave)="item.id === 'patient' ? patientSubmenuOpen = false : (item.id === 'staff' ? staffSubmenuOpen = false : (item.id === 'online' ? onlineSubmenuOpen = false : (item.id === 'vaccination' ? vaccinationSubmenuOpen = false : null)))">
                             <!-- MENU CHA -->
                             <a class="vtth-dropdown-item py-2 py-md-3 px-3 px-md-4 fw-semibold rounded-3 mb-2 d-flex align-items-center justify-content-between gap-2 bg-white text-secondary"
                                [routerLink]="item.route || '/'"
@@ -116,18 +116,18 @@
                             </a>
                             <!-- SUBMENU -->
                             <ul class="dropdown-menu rounded-4 py-2 position-absolute end-100 top-0 mt-0 z-3"
-                                [class.show]="patientSubmenuOpen"
+                                [class.show]="(item.id === 'patient' && patientSubmenuOpen) || (item.id === 'staff' && staffSubmenuOpen) || (item.id === 'online' && onlineSubmenuOpen) || (item.id === 'vaccination' && vaccinationSubmenuOpen)"
                                 style="min-width:250px;">
                               <li *ngFor="let subItem of item.submenu">
                                 <a class="vtth-dropdown-item py-2 px-3 small rounded-3 mb-1 d-block bg-white text-secondary"
                                    [routerLink]="subItem.route"
                                    routerLinkActive="text-primary bg-primary bg-opacity-10"
-                                   (click)="patientSubmenuOpen = false; onMenuItemClick({ route: subItem.route })"
+                                   (click)="item.id === 'patient' ? patientSubmenuOpen = false : (item.id === 'staff' ? staffSubmenuOpen = false : (item.id === 'online' ? onlineSubmenuOpen = false : (item.id === 'vaccination' ? vaccinationSubmenuOpen = false : null))); onMenuItemClick({ route: subItem.route })"
                                    style="transition: background 0.15s, color 0.15s;"
                                    (mouseenter)="hoveredSubDropdownItem = subItem.route"
                                    (mouseleave)="hoveredSubDropdownItem = null"
                                    [ngStyle]="hoveredSubDropdownItem === subItem.route ? {'background': '#f5f5fb', 'color': '#2c62f6'} : {}"
-                                >
+                                 >
                                   {{ subItem.label }}
                                 </a>
                               </li>

@@ -10,6 +10,15 @@ import { NewsDetailComponent } from '../components/news/news-detail/news-detail.
 import { PatientComponent } from '../components/patient/patient-component/patient.component';
 import { PatientIndexComponent } from '../components/patient/patient-index/patient-index.component';
 import { PatientPageComponent } from '../components/patient/patient-page/patient-page.component';
+import { StaffComponent } from '../components/staff/staff-component/staff.component';
+import { StaffIndexComponent } from '../components/staff/staff-index/staff-index.component';
+import { StaffPageComponent } from '../components/staff/staff-page/staff-page.component';
+import { OnlineServicesComponent } from '../components/online-services/online-services-component/online-services.component';
+import { QaExpertComponent } from '../components/online-services/qa-expert/qa-expert.component';
+import { VaccinationComponent } from '../components/vaccination/vaccination-component/vaccination.component';
+import { VaccineStatusComponent } from '../components/vaccination/vaccine-status/vaccine-status.component';
+import { VaccinationProcessComponent } from '../components/vaccination/vaccination-process/vaccination-process.component';
+import { VaccinationScheduleComponent } from '../components/vaccination/vaccination-schedule/vaccination-schedule.component';
 
 export const routes: Routes = [
     {
@@ -98,6 +107,48 @@ export const routes: Routes = [
                     { path: 'phan-hoi/hop-thu', component: PatientPageComponent, data: { name: 'patient-mailbox', title: 'Hộp thư bạn đọc', icon: 'bi-envelope' } },
                 ]
             }
+        ]
+    },
+    {
+        path: 'staff',
+        component: MainLayoutComponent,
+        data: { name: 'staff-layout' },
+        children: [
+            {
+                path: '',
+                component: StaffComponent,
+                children: [
+                    { path: '', component: StaffIndexComponent, data: { name: 'staff-index' } },
+                    { path: 'thong-tin-noi-bo', component: StaffPageComponent, data: { name: 'staff-internal-info', title: 'Thông tin nội bộ', icon: 'bi-building' } },
+                    { path: 'dao-tao-lien-tuc', component: StaffPageComponent, data: { name: 'staff-training', title: 'Đào tạo liên tục theo nhu cầu xã hội', icon: 'bi-book' } },
+                    { path: 'thong-bao-tuyen-sinh', component: StaffPageComponent, data: { name: 'staff-enrollment', title: 'Thông báo tuyển sinh/Chiêu sinh', icon: 'bi-megaphone' } },
+                    { path: 'thong-bao-trung-tuyen', component: StaffPageComponent, data: { name: 'staff-admission', title: 'Thông báo trúng tuyển', icon: 'bi-check-circle' } },
+                    { path: 'quyet-dinh-cap-chung-chi', component: StaffPageComponent, data: { name: 'staff-certificate', title: 'Quyết định cấp chứng chỉ, chứng nhận', icon: 'bi-award' } },
+                    { path: 'hoi-nghi-hoi-thao', component: StaffPageComponent, data: { name: 'staff-conference', title: 'Hội nghị, hội thảo', icon: 'bi-people' } },
+                    { path: 'hop-tac-benh-vien', component: StaffPageComponent, data: { name: 'staff-cooperation', title: 'Hợp tác các bệnh viện', icon: 'bi-handshake' } },
+                    { path: 'nghien-cuu-khoa-hoc', component: StaffPageComponent, data: { name: 'staff-research', title: 'Nghiên cứu khoa học', icon: 'bi-flask' } }
+                ]
+            }
+        ]
+    },
+    {
+        path: 'online-services',
+        component: MainLayoutComponent,
+        data: { name: 'online-services-layout' },
+        children: [
+            { path: '', component: OnlineServicesComponent, data: { name: 'online-services' } },
+            { path: 'hoi-dap', component: QaExpertComponent, data: { name: 'qa-expert', title: 'Hỏi đáp cùng chuyên gia' } }
+        ]
+    },
+    {
+        path: 'vaccination',
+        component: MainLayoutComponent,
+        data: { name: 'vaccination-layout' },
+        children: [
+            { path: '', component: VaccinationComponent, data: { name: 'vaccination' } },
+            { path: 'tinh-hinh-vaccin', component: VaccineStatusComponent, data: { name: 'vaccine-status', title: 'Tình hình Vaccin' } },
+            { path: 'quy-trinh', component: VaccinationProcessComponent, data: { name: 'vaccination-process', title: 'Quy trình tiêm chủng' } },
+            { path: 'lich-tiem', component: VaccinationScheduleComponent, data: { name: 'vaccination-schedule', title: 'Lịch tiêm chủng' } }
         ]
     }
 ];

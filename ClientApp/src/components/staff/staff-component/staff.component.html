@@ -1,0 +1,94 @@
+<div class="container py-4 py-md-5">
+  <div class="row g-4">
+    <!-- Sidebar Menu - Modern Design -->
+    <aside class="col-12 col-lg-3 patient-sidebar">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden sticky-top" style="top: 100px; z-index: 1000;">
+        <!-- Modern Header -->
+        <div class="card-header vtth-bg-primary text-white border-0 p-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-white bg-opacity-20 p-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 60px; height: 60px;">
+              <i class="bi bi-person-badge fs-4 vtth-text-primary"></i>
+            </div>
+            <div>
+              <h5 class="m-0 fw-bold mb-1">Dành cho cán bộ y tế</h5>
+              <small class="opacity-75 d-block">Thông tin & Đào tạo</small>
+            </div>
+          </div>
+        </div>
+        <!-- Modern Menu Items -->
+        <div class="card-body p-3">
+          <nav>
+            <div *ngFor="let menu of menuItems" class="mb-2">
+              <!-- Main Menu Item -->
+              <a
+                [routerLink]="menu.route"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: false}"
+                class="d-flex align-items-center justify-content-between p-3 rounded-3 text-decoration-none mb-2 patient-menu-item"
+                [ngClass]="{
+                  'vtth-bg-primary text-white shadow-sm': isSubmenuOpen(menu.id),
+                  'bg-light text-dark': !isSubmenuOpen(menu.id)
+                }"
+                (click)="menu.children && menu.children.length > 0 ? toggleSubmenu(menu.id) : null"
+                [attr.aria-expanded]="isSubmenuOpen(menu.id)"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div 
+                    class="rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0 patient-icon-badge"
+                    [ngClass]="{
+                      'bg-white bg-opacity-20': isSubmenuOpen(menu.id),
+                      'vtth-bg-primary bg-opacity-10': !isSubmenuOpen(menu.id)
+                    }"
+                    style="width: 40px; height: 40px;"
+                  >
+                    <i 
+                      [class]="menu.icon" 
+                      [ngClass]="{
+                        'text-white': isSubmenuOpen(menu.id), 
+                        'vtth-text-danger': !isSubmenuOpen(menu.id)
+                      }" 
+                      style="font-size: 1.1rem; display: inline-block; visibility: visible; opacity: 1;"
+                    ></i>
+                  </div>
+                  <span class="fw-medium">{{ menu.label }}</span>
+                </div>
+                <i
+                  *ngIf="menu.children && menu.children.length > 0"
+                  class="bi flex-shrink-0"
+                  [class.bi-chevron-down]="!isSubmenuOpen(menu.id)"
+                  [class.bi-chevron-up]="isSubmenuOpen(menu.id)"
+                  style="display: inline-block; visibility: visible; opacity: 1;"
+                ></i>
+              </a>
+
+              <!-- Submenu Items (if any) -->
+              <div
+                *ngIf="menu.children && menu.children.length > 0"
+                class="collapse"
+                [class.show]="isSubmenuOpen(menu.id)"
+              >
+                <div class="list-group list-group-flush bg-light">
+                  <a
+                    *ngFor="let child of menu.children"
+                    [routerLink]="child.route"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action ps-5 py-2 small border-bottom patient-submenu-item"
+                  >
+                    <i [class]="child.icon + ' me-2'" style="font-size: 0.85rem; width: 18px; display: inline-block; text-align: center; visibility: visible; opacity: 1;"></i>
+                    {{ child.label }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="col-12 col-lg-9">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+

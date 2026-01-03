@@ -251,3 +251,13 @@ $vtth-bg-extra-soft: #F5F7F9;
   color: #2c62f6 !important;
   transition: background 0.15s ease, color 0.15s ease;
 }
+
+// ---------------- Service Card Hover Effects ----------------
+.service-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card-hover:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}

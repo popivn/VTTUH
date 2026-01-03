@@ -1,0 +1,93 @@
+<!-- Hero Section -->
+<section class="mb-5">
+  <div class="card border-0 shadow-sm vtth-bg-primary text-white">
+    <div class="card-body p-4 p-md-5">
+      <h1 class="fw-bold mb-3">
+        <i class="bi bi-person-badge me-2"></i>Dành cho cán bộ y tế
+      </h1>
+      <p class="lead mb-0">
+        Trang thông tin nội bộ, đào tạo, hợp tác và nghiên cứu dành cho đội ngũ cán bộ y tế của Bệnh viện Trường Đại học Võ Trường Toản.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Links -->
+<section class="mb-5">
+  <h2 class="fw-bold mb-4 vtth-text-primary">Truy cập nhanh</h2>
+  <div class="row g-4">
+    <div
+      *ngFor="let link of quickLinks"
+      class="col-12 col-md-6 col-lg-4"
+    >
+      <div class="card border-0 shadow-sm h-100 transition">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="flex-shrink-0">
+              <div class="rounded-circle p-3 vtth-bg-{{ link.color }} text-white" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <i [class]="link.icon" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              <h5 class="fw-bold mb-2">{{ link.title }}</h5>
+              <p class="text-muted small mb-3">{{ link.description }}</p>
+              <a
+                [routerLink]="link.route"
+                class="btn btn-sm vtth-btn vtth-btn-{{ link.color }}"
+              >
+                Xem chi tiết <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Information Sections -->
+<section class="mb-5">
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-4">
+          <h4 class="fw-bold mb-3 vtth-text-primary">
+            <i class="bi bi-info-circle me-2"></i>Thông tin quan trọng
+          </h4>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">
+              <i class="bi bi-check-circle vtth-text-success me-2"></i>
+              Hệ thống thông tin nội bộ: Truy cập 24/7
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check-circle vtth-text-success me-2"></i>
+              Phòng Đào tạo: Tầng 3, Phòng 301
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check-circle vtth-text-success me-2"></i>
+              Hotline nội bộ: 1900 xxxx (số máy lẻ)
+            </li>
+            <li>
+              <i class="bi bi-check-circle vtth-text-success me-2"></i>
+              Email: staff@vtth.vn
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card border-0 shadow-sm h-100 vtth-bg-danger text-white">
+        <div class="card-body p-4">
+          <h4 class="fw-bold mb-3">
+            <i class="bi bi-exclamation-triangle me-2"></i>Lưu ý
+          </h4>
+          <p class="mb-0">
+            Các thông báo và quyết định quan trọng sẽ được cập nhật thường xuyên. 
+            Vui lòng kiểm tra định kỳ để nắm bắt thông tin mới nhất.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

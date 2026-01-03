@@ -1,0 +1,294 @@
+<!-- Hero Section with Purple/Teal Gradient -->
+<section class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 30%, #2FA4A9 70%, #10B981 100%); min-height: 420px;">
+  <!-- Decorative Elements -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="opacity: 0.08;">
+    <div class="position-absolute" style="top: 8%; left: 8%; font-size: 10rem; color: white;">
+      <i class="bi bi-shield-plus"></i>
+    </div>
+    <div class="position-absolute" style="top: 20%; right: 12%; font-size: 6rem; color: white;">
+      <i class="bi bi-droplet-fill"></i>
+    </div>
+    <div class="position-absolute" style="bottom: 25%; left: 20%; font-size: 5rem; color: white;">
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+    <div class="position-absolute" style="bottom: 15%; right: 8%; font-size: 7rem; color: white;">
+      <i class="bi bi-capsule"></i>
+    </div>
+  </div>
+  
+  <div class="container position-relative py-5">
+    <div class="row align-items-center py-5">
+      <div class="col-lg-8 mx-auto text-center text-white">
+        <div class="mb-4">
+          <span class="badge bg-white text-dark px-4 py-2 rounded-pill fs-6 shadow-sm">
+            <i class="bi bi-shield-fill-check me-2 text-success"></i>
+            Bảo vệ sức khỏe cộng đồng
+          </span>
+        </div>
+        <h1 class="display-3 fw-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3);">
+          <i class="bi bi-shield-plus me-3"></i>Tiêm chủng
+        </h1>
+        <p class="lead mb-4 opacity-90" style="font-size: 1.4rem;">
+          Vaccine chất lượng cao - An toàn - Hiệu quả
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a routerLink="/dat-lich-kham" class="btn btn-light btn-lg px-5 rounded-pill shadow-lg fw-bold">
+            <i class="bi bi-calendar-check me-2"></i>Đặt lịch tiêm
+          </a>
+          <a href="#services" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+            <i class="bi bi-arrow-down me-2"></i>Xem dịch vụ
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Wave Divider -->
+  <div class="position-absolute bottom-0 start-0 w-100">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width: 100%; height: 80px;">
+      <path d="M0 120L48 110C96 100 192 80 288 70C384 60 480 60 576 65C672 70 768 80 864 85C960 90 1056 90 1152 85C1248 80 1344 70 1392 65L1440 60V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0Z" fill="white"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row g-4">
+      <div *ngFor="let stat of stats" class="col-6 col-md-3">
+        <div class="text-center p-4 rounded-4 h-100" style="background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" 
+               style="width: 70px; height: 70px; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);">
+            <i [class]="'bi ' + stat.icon + ' text-white'" style="font-size: 1.8rem;"></i>
+          </div>
+          <h3 class="fw-bold mb-1" style="color: #6366F1;">{{ stat.value }}</h3>
+          <p class="text-muted small mb-0">{{ stat.label }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-5" style="background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="badge px-3 py-2 rounded-pill mb-3 text-white" style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);">
+        <i class="bi bi-stars me-2"></i>Dịch vụ tiêm chủng
+      </span>
+      <h2 class="fw-bold" style="color: #6366F1;">Chọn dịch vụ bạn cần</h2>
+      <p class="text-muted">Tiêm chủng an toàn với đội ngũ y bác sĩ chuyên nghiệp</p>
+    </div>
+    
+    <div class="row g-4">
+      <div *ngFor="let service of services" class="col-12 col-lg-4">
+        <div class="card border-0 shadow-lg h-100 rounded-4 overflow-hidden service-card-hover" 
+             style="cursor: pointer;">
+          <!-- Card Header with Gradient -->
+          <div class="card-header border-0 p-4 text-white text-center" [style.background]="service.gradient">
+            <div class="rounded-circle bg-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+              <i [class]="'bi ' + service.icon" [style.color]="service.gradient.includes('#8B5CF6') ? '#8B5CF6' : (service.gradient.includes('#2FA4A9') ? '#2FA4A9' : '#10B981')" style="font-size: 2.5rem;"></i>
+            </div>
+            <h4 class="fw-bold mb-0">{{ service.title }}</h4>
+          </div>
+          
+          <!-- Card Body -->
+          <div class="card-body p-4">
+            <p class="text-muted mb-4">{{ service.description }}</p>
+            
+            <!-- Features List -->
+            <ul class="list-unstyled mb-4">
+              <li *ngFor="let feature of service.features" class="mb-2 d-flex align-items-center">
+                <span class="rounded-circle d-inline-flex align-items-center justify-content-center me-3" 
+                      style="width: 28px; height: 28px; background: rgba(139, 92, 246, 0.1);">
+                  <i class="bi bi-check2" style="font-size: 0.9rem; color: #8B5CF6;"></i>
+                </span>
+                <span class="small">{{ feature }}</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Card Footer -->
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <a [routerLink]="service.route" 
+               class="btn w-100 py-3 rounded-pill fw-bold text-white shadow-sm"
+               [style.background]="service.gradient">
+              <span>Xem chi tiết</span>
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Timeline Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="badge vtth-bg-primary text-white px-3 py-2 rounded-pill mb-3">
+        <i class="bi bi-signpost-split me-2"></i>Quy trình
+      </span>
+      <h2 class="fw-bold vtth-text-primary">4 bước tiêm chủng đơn giản</h2>
+    </div>
+    
+    <div class="row g-0 position-relative">
+      <!-- Timeline Line -->
+      <div class="d-none d-lg-block position-absolute" style="top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(90deg, #8B5CF6 0%, #2FA4A9 50%, #10B981 100%); transform: translateY(-50%); z-index: 0;"></div>
+      
+      <div *ngFor="let step of processSteps; let i = index" class="col-6 col-lg-3 text-center position-relative" style="z-index: 1;">
+        <div class="p-3">
+          <!-- Step Circle -->
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle shadow-lg mb-3"
+               [style.background]="i === 0 ? 'linear-gradient(135deg, #8B5CF6, #7C3AED)' : (i === 1 ? 'linear-gradient(135deg, #6366F1, #4F46E5)' : (i === 2 ? 'linear-gradient(135deg, #2FA4A9, #23878B)' : 'linear-gradient(135deg, #10B981, #059669)'))"
+               style="width: 90px; height: 90px; border: 4px solid white;">
+            <i [class]="'bi ' + step.icon + ' text-white'" style="font-size: 2rem;"></i>
+          </div>
+          
+          <!-- Step Number Badge -->
+          <div class="position-absolute translate-middle badge rounded-pill text-white shadow"
+               style="top: 20px; left: 75%; background: linear-gradient(135deg, #f59e0b, #d97706);">
+            {{ step.step }}
+          </div>
+          
+          <h5 class="fw-bold mb-2" style="color: #4F46E5;">{{ step.title }}</h5>
+          <p class="text-muted small mb-0">{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Vaccines Section -->
+<section class="py-5" style="background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="badge px-3 py-2 rounded-pill mb-3 text-white" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+        <i class="bi bi-capsule me-2"></i>Vaccine phổ biến
+      </span>
+      <h2 class="fw-bold" style="color: #059669;">Các loại vaccine hiện có</h2>
+      <p class="text-muted">Cập nhật mới nhất về tình trạng vaccine tại bệnh viện</p>
+    </div>
+    
+    <div class="row g-4">
+      <div *ngFor="let vaccine of popularVaccines" class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden service-card-hover">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                   style="width: 60px; height: 60px; background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);">
+                <i [class]="'bi ' + vaccine.icon + ' text-white'" style="font-size: 1.5rem;"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h5 class="fw-bold mb-0" style="color: #4F46E5;">{{ vaccine.name }}</h5>
+                  <span class="badge rounded-pill" [ngClass]="getStatusClass(vaccine.status)">
+                    {{ vaccine.statusText }}
+                  </span>
+                </div>
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-people me-1"></i>{{ vaccine.target }}
+                </p>
+                <a routerLink="/vaccination/tinh-hinh-vaccin" class="btn btn-sm btn-outline-primary rounded-pill">
+                  <i class="bi bi-info-circle me-1"></i>Chi tiết
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <a routerLink="/vaccination/tinh-hinh-vaccin" class="btn btn-lg rounded-pill px-5 text-white shadow"
+         style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);">
+        <i class="bi bi-grid me-2"></i>Xem tất cả vaccine
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Preview -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <span class="badge vtth-bg-info text-white px-3 py-2 rounded-pill mb-3">
+          <i class="bi bi-question-circle me-2"></i>FAQ
+        </span>
+        <h2 class="fw-bold vtth-text-primary mb-4">Câu hỏi thường gặp</h2>
+        <p class="text-muted mb-4">
+          Giải đáp các thắc mắc phổ biến về tiêm chủng tại Bệnh viện Đại học Võ Trường Toản.
+        </p>
+        <a routerLink="/vaccination/quy-trinh" class="btn vtth-btn-primary rounded-pill px-4">
+          <i class="bi bi-book me-2"></i>Xem hướng dẫn đầy đủ
+        </a>
+      </div>
+      <div class="col-lg-7">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item border-0 shadow-sm rounded-3 mb-3">
+            <h2 class="accordion-header">
+              <button class="accordion-button rounded-3 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                <i class="bi bi-patch-question me-2 text-primary"></i>
+                Trước khi tiêm cần chuẩn bị gì?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Mang theo CMND/CCCD, sổ tiêm chủng (nếu có). Ăn uống đầy đủ, nghỉ ngơi tốt trước khi tiêm. Thông báo cho bác sĩ nếu đang dùng thuốc hoặc có bệnh nền.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm rounded-3 mb-3">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded-3 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                <i class="bi bi-patch-question me-2 text-primary"></i>
+                Sau khi tiêm cần theo dõi gì?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Ở lại theo dõi 30 phút tại bệnh viện. Theo dõi tại nhà 24-48h. Liên hệ ngay nếu có triệu chứng bất thường như sốt cao, khó thở, phát ban.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 shadow-sm rounded-3">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded-3 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                <i class="bi bi-patch-question me-2 text-primary"></i>
+                Chi phí tiêm chủng như thế nào?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted">
+                Chi phí tùy thuộc loại vaccine. Xem bảng giá chi tiết tại trang "Tình hình Vaccin". Một số vaccine được BHYT chi trả hoặc miễn phí theo chương trình tiêm chủng mở rộng.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 50%, #2FA4A9 100%);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 text-white">
+        <h3 class="fw-bold mb-2">
+          <i class="bi bi-calendar-check me-2"></i>Đặt lịch tiêm chủng ngay hôm nay
+        </h3>
+        <p class="mb-0 opacity-90">Bảo vệ sức khỏe cho bạn và gia đình với vaccine chất lượng cao</p>
+      </div>
+      <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+        <a routerLink="/dat-lich-kham" class="btn btn-light btn-lg rounded-pill px-5 shadow-lg fw-bold">
+          <i class="bi bi-telephone-fill me-2 text-success"></i>
+          Đặt lịch ngay
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+

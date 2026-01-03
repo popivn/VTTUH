@@ -45,15 +45,56 @@ export class SubHeaderComponent implements OnInit, OnDestroy {
                 { label: 'Phản hồi và góp ý', route: '/patient/phan-hoi' }
             ]
         },
-        { id: 'staff', label: 'Dành cho cán bộ y tế', route: '/staff', icon: 'bi-person-badge' },
-        { id: 'online', label: 'Dịch vụ trực tuyến', route: '/online-services', icon: 'bi-globe' },
-        { id: 'vaccination', label: 'Tiêm chủng', route: '/vaccination', icon: 'bi-shield-plus' },
+        { 
+            id: 'staff', 
+            label: 'Dành cho cán bộ y tế', 
+            route: '/staff', 
+            icon: 'bi-person-badge',
+            hasSubmenu: true,
+            submenu: [
+                { label: 'Thông tin nội bộ', route: '/staff/thong-tin-noi-bo' },
+                { label: 'Đào tạo liên tục', route: '/staff/dao-tao-lien-tuc' },
+                { label: 'Tuyển sinh/Chiêu sinh', route: '/staff/thong-bao-tuyen-sinh' },
+                { label: 'Thông báo trúng tuyển', route: '/staff/thong-bao-trung-tuyen' },
+                { label: 'Cấp chứng chỉ, chứng nhận', route: '/staff/quyet-dinh-cap-chung-chi' },
+                { label: 'Hội nghị, hội thảo', route: '/staff/hoi-nghi-hoi-thao' },
+                { label: 'Hợp tác bệnh viện', route: '/staff/hop-tac-benh-vien' },
+                { label: 'Nghiên cứu khoa học', route: '/staff/nghien-cuu-khoa-hoc' }
+            ]
+        },
+        { 
+            id: 'online', 
+            label: 'Dịch vụ trực tuyến', 
+            route: '/online-services', 
+            icon: 'bi-globe',
+            hasSubmenu: true,
+            submenu: [
+                { label: 'Đặt lịch hẹn khám bệnh', route: '/dat-lich-kham' },
+                { label: 'Hỏi đáp cùng chuyên gia', route: '/online-services/hoi-dap' },
+                { label: 'Tra cứu kết quả xét nghiệm', route: '/patient/tien-ich/tra-cuu-ket-qua' }
+            ]
+        },
+        { 
+            id: 'vaccination', 
+            label: 'Tiêm chủng', 
+            route: '/vaccination', 
+            icon: 'bi-shield-plus',
+            hasSubmenu: true,
+            submenu: [
+                { label: 'Tình hình Vaccin', route: '/vaccination/tinh-hinh-vaccin' },
+                { label: 'Quy trình tiêm chủng', route: '/vaccination/quy-trinh' },
+                { label: 'Lịch tiêm chủng', route: '/vaccination/lich-tiem' }
+            ]
+        },
         { id: 'recruitment', label: 'Tuyển dụng', route: '/recruitment', icon: 'bi-briefcase-fill' },
         { id: 'invoice', label: 'Tra cứu hóa đơn điện tử', route: '/invoice', icon: 'bi-receipt' },
         { id: 'events', label: 'Sự kiện', route: '/events', icon: 'bi-stars' }
     ];
     
     patientSubmenuOpen = false;
+    staffSubmenuOpen = false;
+    onlineSubmenuOpen = false;
+    vaccinationSubmenuOpen = false;
     hoveredItem: string | null = null;
     hoveredDropdownMobileItem: string | null = null;
     hoveredDropdownItem: string | null = null;
